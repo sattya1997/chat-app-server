@@ -157,6 +157,14 @@ io.on("connection", async (socket) => {
   socket.on("disconnect", () => {
     onlineUsers.delete(user?._id?.toString());
   });
+
+  socket.on("callUser", (data) => {
+    io.to(data.toUser._id).emit("callUser", {signal: data.signalData, fromUser:data.fromUser})
+  });
+
+  socket.on("answerCall", (data) => {
+    io.to(data.toUser._id).emit("callAccepted", data.signal);
+  });
 });
 
 module.exports = {
