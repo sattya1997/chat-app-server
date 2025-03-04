@@ -12,7 +12,7 @@ const getConversation = require("../utils/getConversation");
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL,
+    origin: "*",
     credentials: true,
   },
 });
