@@ -163,6 +163,7 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("answerCall", (data) => {
+    console.log(data);
     io.to(data.toUser._id).emit("callAccepted", data.signal);
   });
 });
