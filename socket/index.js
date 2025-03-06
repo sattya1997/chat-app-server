@@ -160,14 +160,17 @@ try {
     });
   
     socket.on("callUser", (data) => {
-      io.to(data.toUser._id).emit("callUser", {signal: data.signalData, fromUser:data.fromUser})
+      io.to(data.toUser._id).emit("callUser", { signal: data.signalData, fromUser: data.fromUser });
     });
   
     socket.on("answerCall", (data) => {
-      console.log(data.toUser);
       if (data.toUser) {
         io.to(data.toUser._id).emit("callAccepted", data.signal);
       }
+    });
+  
+    socket.on("iceCandidate", (data) => {
+      io.to(data.toUser._id).emit("iceCandidate", data.candidate);
     });
   });
 } catch (error) {
