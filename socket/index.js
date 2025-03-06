@@ -164,7 +164,7 @@ try {
     });
   
     socket.on("answerCall", (data) => {
-      console.log(data);
+      console.log(data.toUser);
       io.to(data.toUser._id).emit("callAccepted", data.signal);
     });
   });
