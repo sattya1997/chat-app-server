@@ -165,7 +165,9 @@ try {
   
     socket.on("answerCall", (data) => {
       console.log(data.toUser);
-      io.to(data.toUser._id).emit("callAccepted", data.signal);
+      if (data.toUser) {
+        io.to(data.toUser._id).emit("callAccepted", data.signal);
+      }
     });
   });
 } catch (error) {
