@@ -160,6 +160,7 @@ try {
     });
   
     socket.on("callUser", (data) => {
+      console.log("server call received")
       io.to(data.toUser._id).emit("callUser", { signal: data.signalData, fromUser: data.fromUser });
     });
   
